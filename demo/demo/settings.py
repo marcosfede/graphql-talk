@@ -25,7 +25,7 @@ SECRET_KEY = 'ofd1niuq=2a2k6dsfw#t2lhsq@ys#vs+ok=vut=ya**nk==@xl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'graphene_django',
     'app.apps.AppConfig',
 ]
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -124,3 +126,6 @@ STATIC_URL = '/static/'
 GRAPHENE = {
     'SCHEMA': 'app.schema.schema'  # Where your Graphene schema lives
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+CSRF_COOKIE_SECURE = False
