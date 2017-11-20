@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "react-apollo"
 import gql from "graphql-tag"
+import { Link } from "react-router-dom"
 import "./Post.css"
 
 const Post = ({ match, data }) => {
@@ -10,14 +11,18 @@ const Post = ({ match, data }) => {
   return (
     <div className="post-container">
       <div className="post-wrp">
-        <div className="post-header">Post by {post.author.name} {post.author.lastName}:</div>
+        <div className="post-header">
+          Post by {post.author.name} {post.author.lastName}:
+        </div>
         <div className="post-title">Title: {post.title}</div>
       </div>
       <div className="post-body">{post.content}</div>
       <div className="post-comments">
         <div>latest comments: </div>
         {post.comments.map(comment => (
-          <div className="post" key={comment.id}>{comment.text}</div>
+          <div className="post" key={comment.id}>
+            {comment.text} by <Link to={"/user/" + comment.user.id}>{comment.user.name} {comment.user.lastName}</Link>
+          </div>
         ))}
       </div>
     </div>
@@ -38,6 +43,11 @@ const POST_QUERY = gql`
       comments {
         id
         text
+        user {
+          id
+          name
+          lastName
+        }
       }
     }
   }
