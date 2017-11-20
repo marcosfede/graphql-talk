@@ -1,9 +1,11 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import "./index.css"
-import App from "./App"
-import User from "./User"
-import Post from "./Post"
+import App from "./components/App"
+import User from "./components/User"
+import Post from "./components/Post"
+import Layout from './components/Layout'
+
 import { InMemoryCache } from "apollo-cache-inmemory"
 import { HttpLink } from "apollo-link-http"
 import { ApolloProvider } from "react-apollo"
@@ -20,11 +22,11 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Router>
-      <div>
+      <Layout>
         <Route exact path="/" component={App} />
         <Route path="/post/:id" component={Post} />
         <Route path="/user/:id" component={User} />
-      </div>
+      </Layout>
     </Router>
   </ApolloProvider>,
   document.getElementById("root")

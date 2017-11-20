@@ -42,7 +42,7 @@ const App = ({ data, history }) => {
 }
 
 const POSTS_QUERY = gql`
-{
+query allPosts {
   posts {
     id
     title

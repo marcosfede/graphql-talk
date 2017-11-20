@@ -23,6 +23,10 @@ class Query(graphene.ObjectType):
     comments = graphene.List(CommentType)
     posts = graphene.List(PostType)
 
+    user = graphene.Field(UserType, id=graphene.Int())
+    post = graphene.Field(PostType, id=graphene.Int())
+    comment = graphene.Field(CommentType, id=graphene.Int())
+
     def resolve_users(self, info):
         return User.objects.all()
 
@@ -32,6 +36,14 @@ class Query(graphene.ObjectType):
     def resolve_posts(self, info):
         return Post.objects.all()
 
+    def resolve_post(self, info, id):
+        return Post.objects.get(id=id)
+
+    def resolve_user(self, info, id):
+        return User.objects.get(id=id)
+
+    def resolve_comment(self, info, id):
+        return Comment.objects.get(id=id)
 
 # schema = graphene.Schema(query=Query)
 
