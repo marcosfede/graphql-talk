@@ -2,7 +2,6 @@ import React from "react"
 import { graphql } from "react-apollo"
 import gql from "graphql-tag"
 import "./User.css"
-import { Row, Col } from "antd"
 import { Link } from "react-router-dom"
 
 const User = ({ match, data }) => {
