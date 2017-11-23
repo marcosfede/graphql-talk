@@ -45,27 +45,27 @@ class Query(graphene.ObjectType):
     def resolve_comment(self, info, id):
         return Comment.objects.get(id=id)
 
-# schema = graphene.Schema(query=Query)
+schema = graphene.Schema(query=Query)
 
 
-class CreateComment(graphene.Mutation):
-    class Arguments:
-        text = graphene.String(required=True)
-        user = graphene.ID(required=True)
-        post = graphene.ID(required=True)
+# class CreateComment(graphene.Mutation):
+#     class Arguments:
+#         text = graphene.String(required=True)
+#         user = graphene.ID(required=True)
+#         post = graphene.ID(required=True)
 
-    ok = graphene.Boolean()
-    comment = graphene.Field(lambda: CommentType)
+#     ok = graphene.Boolean()
+#     comment = graphene.Field(lambda: CommentType)
 
-    def mutate(self, info, text, user, post):
-        comment = Comment(text=text, user_id=user, post_id=post)
-        comment.save()
-        ok = True
-        return CreateComment(comment=comment, ok=ok)
-
-
-class Mutations(graphene.ObjectType):
-    create_comment = CreateComment.Field()
+#     def mutate(self, info, text, user, post):
+#         comment = Comment(text=text, user_id=user, post_id=post)
+#         comment.save()
+#         ok = True
+#         return CreateComment(comment=comment, ok=ok)
 
 
-schema = graphene.Schema(query=Query, mutation=Mutations)
+# class Mutations(graphene.ObjectType):
+#     create_comment = CreateComment.Field()
+
+
+# schema = graphene.Schema(query=Query, mutation=Mutations)
