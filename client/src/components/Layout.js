@@ -11,8 +11,8 @@ const LayoutContainer = ({ location, children, history }) => {
   ))
   return (
     <Layout className="layout">
-      <Content style={{ padding: "0 50px" }}>
-        <Breadcrumb style={{ margin: "16px 0" }}>
+      <Content style={{ padding: "0 10px" }}>
+        <Breadcrumb style={{ margin: "16px 30px" }}>
           <Breadcrumb.Item
             className="home-link"
             onClick={() => history.push("/")}

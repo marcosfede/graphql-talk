@@ -1,14 +1,18 @@
 import React from "react"
 import { graphql } from "react-apollo"
 import gql from "graphql-tag"
-import './User.css'
-import {Row, Col} from 'antd'
+import "./User.css"
+import { Row, Col } from "antd"
+import { Link } from "react-router-dom"
 
- 
 const User = ({ match, data }) => {
   const { user, loading, error } = data
-  if (error) return error
-  if (loading) return <div>loading...</div>
+  if (error) {
+    return error
+  }
+  if (loading) {
+    return <div>loading...</div>
+  }
   return (
     <div className="user-container">
       <div className="user-wrp">
@@ -17,26 +21,33 @@ const User = ({ match, data }) => {
           {user.name} {user.lastName}
         </div>
       </div>
-      <Row>
-        <Col span={12}>
       <div className="comments-container">
         <div className="comments-header">
-          {user.name} {user.lastName} latest comments:
+          <b>
+            {user.name} {user.lastName} latest comments:
+          </b>
         </div>
         {user.comments.map(comment => (
-          <div className="comment" key={comment.id}>"{comment.text}" on {comment.post.author.name} {comment.post.author.lastName}'s post</div>
+          <div className="comment" key={comment.id}>
+            "{comment.text}" on {comment.post.author.name}{" "}
+            {comment.post.author.lastName}'s post
+          </div>
         ))}
       </div>
-      </Col>
-      <Col span={12}>
       <div className="posts-container">
         <div className="post-header">
-          {user.name} {user.lastName} latest posts:
+          <b>
+            {user.name} {user.lastName} latest posts:
+          </b>
         </div>
-        {user.posts.map(post => <div className="post" key={post.id}>{post.title}</div>)}
+        {user.posts.map(post => (
+          <div>
+          <Link to={`/post/${post.id}`} className="post" key={post.id}>
+            {post.title}
+          </Link>
+          </div>
+        ))}
       </div>
-      </Col>
-      </Row>
     </div>
   )
 }

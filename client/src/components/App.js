@@ -26,7 +26,7 @@ const App = ({ data, history }) => {
       key={post.id}
       className="post"
       title={post.title}
-      style={{ width: 600 }}
+      style={{ minWidth: 350, maxWidth: 600 }}
       bodyStyle={{ padding: 0 }}
     >
       <div className="post-content">

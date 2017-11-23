@@ -18,10 +18,15 @@ const Post = ({ match, data }) => {
       </div>
       <div className="post-body">{post.content}</div>
       <div className="post-comments">
-        <div>latest comments: </div>
+        <div>
+          <b>Latest comments: </b>
+        </div>
         {post.comments.map(comment => (
           <div className="post" key={comment.id}>
-            {comment.text} by <Link to={"/user/" + comment.user.id}>{comment.user.name} {comment.user.lastName}</Link>
+            {comment.text} by{" "}
+            <Link to={"/user/" + comment.user.id}>
+              {comment.user.name} {comment.user.lastName}
+            </Link>
           </div>
         ))}
       </div>
