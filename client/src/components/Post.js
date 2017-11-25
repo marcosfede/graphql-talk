@@ -23,10 +23,7 @@ const Post = ({ match, data }) => {
         </div>
         {post.comments.map(comment => (
           <div className="post" key={comment.id}>
-            {comment.text} by{" "}
-            <Link to={"/user/" + comment.user.id}>
-              {comment.user.name} {comment.user.lastName}
-            </Link>
+            {comment.text}
           </div>
         ))}
       </div>
@@ -48,11 +45,6 @@ const POST_QUERY = gql`
       comments {
         id
         text
-        user {
-          id
-          name
-          lastName
-        }
       }
     }
   }
